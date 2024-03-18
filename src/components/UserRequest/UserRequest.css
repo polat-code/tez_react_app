@@ -1,0 +1,21 @@
+.chat{
+    margin:1rem;
+    padding:2rem 3rem;
+    font-size:1.2rem;
+    display:flex;
+    align-items: flex-start;
+    text-align: justify;
+
+}
+
+.chatImg{
+    object-fit: cover;
+    width:3.5rem;
+    margin-right:2rem;
+    border-radius: 0.5rem;
+}
+
+.txt{
+    line-height: 2.5rem;
+    color:white;
+  }
