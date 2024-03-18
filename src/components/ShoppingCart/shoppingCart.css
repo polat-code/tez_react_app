@@ -1,0 +1,33 @@
+.shopping-cart-container {
+    background-color: transparent;
+}
+
+.text-white {
+    color: white;
+}
+#produc{
+    padding-left:60px;
+}
+#prc{
+    padding-left:10px;
+}
+#quantity{
+    padding-left:40px;
+}
+#total{
+    padding-left:48px;
+}
+#productDesc{
+    padding:10px;
+}
+#plusSquare{
+    
+    width: 12px;
+    height: 12px;
+}
+#minusSquare{
+    
+    border: none;
+    width: 12px;
+    height: 12px;
+}

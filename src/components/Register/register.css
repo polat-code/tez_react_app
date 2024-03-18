@@ -1,0 +1,54 @@
+.register-container {
+    background: transparent;
+    padding: 1rem;
+    border-radius: 8px;
+    border-bottom: 4px solid #292f3f;
+    width: 205px;
+    height: 330px; /* Yüksekliği buton boyutuna göre ayarladım */
+    box-shadow: 0 1px 0px 0 black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .input-group {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  
+  .input-field {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 0.5rem 0;
+    color: rgb(224, 217, 217);
+    background: transparent;
+    outline: none;
+  }
+  
+  .input-field:focus {
+    border-bottom: 1px solid #0398fc;
+  }
+  
+  .submit-group {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .submit-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 3px;
+    background-color: #39a0ed;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #2a78c7;
+  }
+  
