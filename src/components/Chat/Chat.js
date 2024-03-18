@@ -1,16 +1,23 @@
 import React, { useEffect } from "react";
 import UserRequest from "../UserRequest/UserRequest";
 import BotResponse from "../BotResponse/BotResponse";
+import Register from "../Register/Register";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const Chat = ({ messages }) => {
   return (
     <div className="chats">
       {messages.map((message, index) => {
-        return message.messageType === "user" ? (
-          <UserRequest key={index} text={message.message} />
-        ) : (
-          <BotResponse key={index} text={message.message} />
-        );
+        switch (message.messageType) {
+          case "user":
+            return <UserRequest key={index} text={message.message} />;
+          case "register":
+            return <Register key={index} />;
+          case "cart":
+            return <ShoppingCart key={index} />;
+          default:
+            return <BotResponse key={index} text={message.message} />;
+        }
       })}
     </div>
   );

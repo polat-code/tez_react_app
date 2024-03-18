@@ -15,15 +15,16 @@ const Main = () => {
   const [message, setMessage] = useState();
 
   const handleSendMessage = () => {
+    // Get Response from Backend
+    // Fake response
     setMessages([
       ...messages,
       { message: message, messageType: "user" },
-      { message: "This is ai response", messageType: "ai" },
+      {
+        message: "This is ai response",
+        messageType: "cart",
+      },
     ]);
-
-    // Get Response from Backend
-    // Fake response
-
     // Reset input value
     setMessage("");
   };
