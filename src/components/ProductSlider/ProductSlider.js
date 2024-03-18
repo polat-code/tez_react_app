@@ -18,7 +18,7 @@ const products = [
   { id: 5, name: "Playstation 5", price: 1000, imageUrl: ps5Img },
 ];
 
-const ProductSlider = ({ products }) => {
+const ProductSlider = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const groupedProducts = [];
