@@ -9,22 +9,42 @@ import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import UserRequest from "../UserRequest/UserRequest";
 import BotResponse from "../BotResponse/BotResponse";
 import Chat from "../Chat/Chat";
+import { createChat, sendMessage } from "../../api/api";
 
 const Main = () => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchProducts, setSearchProducts] = useState([]);
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     // Get Response from Backend
-    // Fake response
-    setMessages([
-      ...messages,
-      { message: message, messageType: "user" },
-      {
-        message: "This is ai response",
-        messageType: "cart",
-      },
-    ]);
+    const createChatResponse = await createChat(message);
+    if (createChatResponse.success) {
+      // Send a message to backend (Chatgpt)
+      const sendMessageResponse = await sendMessage({
+        userId: createChatResponse.data.user_id,
+        chatId: createChatResponse.data.id,
+      });
+      if (sendMessageResponse.success) {
+        const componentType = sendMessageResponse.data.returnType;
+        if (componentType === "productList") {
+          setMessages([
+            ...messages,
+            { message: message, messageType: "user" },
+            {
+              message: sendMessageResponse.data.searchProducts,
+              messageType: "register",
+            },
+          ]);
+        }
+      } else {
+        console.log("There is an error in message response");
+      }
+    } else {
+      console.log("There is an error in chat response");
+    }
+
     // Reset input value
     setMessage("");
   };
@@ -32,6 +52,8 @@ const Main = () => {
   return (
     <div className="main">
       <Chat messages={messages} />
+      <ShoppingCart />
+      <ProductSlider />
       <div className="chatFooter">
         <div className="inp">
           <input

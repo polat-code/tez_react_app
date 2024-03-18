@@ -14,7 +14,7 @@ const Chat = ({ messages }) => {
           case "register":
             return <Register key={index} />;
           case "cart":
-            return <ShoppingCart key={index} />;
+            return <ShoppingCart key={index} text={message.message} />;
           default:
             return <BotResponse key={index} text={message.message} />;
         }
