@@ -21,7 +21,7 @@ const products = [
 const ProductSlider = ({ products }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const [groupedProducts] = [];
+  const groupedProducts = [];
   for (let i = 0; i < products.length; i += 3) {
     groupedProducts.push(products.slice(i, i + 3));
   }
