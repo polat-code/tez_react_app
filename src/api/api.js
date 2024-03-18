@@ -30,10 +30,12 @@ export const createChat = async () => {
 };
 export const sendMessage = async (dataWithchatIdAndMessage) => {
   try {
-    const response = await api().post("/chats", dataWithchatIdAndMessage);
+    const encodedMessage = encodeURIComponent(dataWithchatIdAndMessage.message);
+    const response = await api().get(
+      "/chats/" + dataWithchatIdAndMessage.chatId + "/message/" + encodedMessage
+    );
     return { success: true, data: response.data };
   } catch (err) {
-    // Something happened in setting up the request that triggered an Error
     console.log(err);
     return { success: false, message: err.message };
   }
