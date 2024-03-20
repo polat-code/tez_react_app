@@ -10,7 +10,7 @@ const Chat = ({ messages }) => {
     <div className="chats">
       {messages.map((message, index) => {
         switch (message.messageType) {
-          case "user":
+          case "productList":
             return <ProductSlider key={index} products={message.message} />;
           case "user":
             return <UserRequest key={index} text={message.message} />;

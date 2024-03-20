@@ -30,7 +30,7 @@ export const createChat = async () => {
 };
 export const sendMessage = async (dataWithchatIdAndMessage) => {
   try {
-    console.log(dataWithchatIdAndMessage);
+    //console.log(dataWithchatIdAndMessage);
     const response = await api().post("/chats/send-message", {
       chatId: dataWithchatIdAndMessage.chatId,
       message: dataWithchatIdAndMessage.message,

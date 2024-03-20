@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import sendBtn from "../../assets/send.svg";
 import Chat from "../Chat/Chat";
 import { createChat, sendMessage } from "../../api/api";
+import ListProduct from "../ListProduct/ListProduct";
 
 const Main = () => {
   const [messages, setMessages] = useState([]);
@@ -11,14 +12,14 @@ const Main = () => {
   const handleSendMessage = async () => {
     // Get Response from Backend
     const createChatResponse = await createChat(message);
-    console.log(createChatResponse);
+    //console.log(createChatResponse);
     if (createChatResponse.success) {
       // Send a message to backend (Chatgpt)
       const sendMessageResponse = await sendMessage({
         message: message,
         chatId: createChatResponse.data.id,
       });
-      console.log(sendMessageResponse);
+      //console.log(sendMessageResponse);
       if (sendMessageResponse.success) {
         const componentType = sendMessageResponse.data.returnType;
         if (componentType === "productList") {
@@ -45,7 +46,6 @@ const Main = () => {
   return (
     <div className="main">
       <Chat messages={messages} />
-
       <div className="chatFooter">
         <div className="inp">
           <input

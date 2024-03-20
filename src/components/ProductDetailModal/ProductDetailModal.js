@@ -9,11 +9,11 @@ const ProductDetailModal = ({ selectedProduct, setSelectedProduct }) => {
         </span>
         <div className="product-modal-header">
           <img
-            src={selectedProduct.imageUrl}
-            alt={selectedProduct.name}
+            src={selectedProduct.url}
+            alt={selectedProduct.title}
             style={{ width: "100px", height: "100px" }}
           />
-          <h3>Product Name:{selectedProduct.name}</h3>
+          <h3>Product Name:{selectedProduct.title}</h3>
           <div className="product-rating">
             <span>Rating: </span>
             {/* Sembolik yıldızlar ve puan */}
