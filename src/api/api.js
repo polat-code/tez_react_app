@@ -30,10 +30,11 @@ export const createChat = async () => {
 };
 export const sendMessage = async (dataWithchatIdAndMessage) => {
   try {
-    const encodedMessage = encodeURIComponent(dataWithchatIdAndMessage.message);
-    const response = await api().get(
-      "/chats/" + dataWithchatIdAndMessage.chatId + "/message/" + encodedMessage
-    );
+    console.log(dataWithchatIdAndMessage);
+    const response = await api().post("/chats/send-message", {
+      chatId: dataWithchatIdAndMessage.chatId,
+      message: dataWithchatIdAndMessage.message,
+    });
     return { success: true, data: response.data };
   } catch (err) {
     console.log(err);
