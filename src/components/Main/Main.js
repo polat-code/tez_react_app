@@ -1,44 +1,58 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Main.css";
 import sendBtn from "../../assets/send.svg";
 import Chat from "../Chat/Chat";
 import { createChat, sendMessage } from "../../api/api";
-import ListProduct from "../ListProduct/ListProduct";
 
-const Main = () => {
+const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [chatId, setChatId] = useState(0);
+
+  useEffect(() => {
+    const createAChat = async () => {
+      if (!chatId) {
+        var createChatResponse = await createChat(message);
+        if (!createChatResponse.success) {
+          console.log("there is an error in creating a chat");
+        } else {
+          console.log(createChatResponse.data.id);
+          setChatId(createChatResponse.data.id);
+        }
+      }
+    };
+
+    createAChat();
+    setMessages([]);
+    setMessage("");
+  }, [isCreatedNewChat]);
 
   const handleSendMessage = async () => {
     setIsLoading(true);
     // Get Response from Backend
-    const createChatResponse = await createChat(message);
     //console.log(createChatResponse);
-    if (createChatResponse.success) {
-      // Send a message to backend (Chatgpt)
-      const sendMessageResponse = await sendMessage({
-        message: message,
-        chatId: createChatResponse.data.id,
-      });
-      //console.log(sendMessageResponse);
-      if (sendMessageResponse.success) {
-        const componentType = sendMessageResponse.data.returnType;
-        if (componentType === "productList") {
-          setMessages([
-            ...messages,
-            { message: message, messageType: "user" },
-            {
-              message: sendMessageResponse.data.searchProducts,
-              messageType: "productList",
-            },
-          ]);
-        }
-      } else {
-        console.log("There is an error in message response");
+
+    // Send a message to backend (Chatgpt)
+    const sendMessageResponse = await sendMessage({
+      message: message,
+      chatId: chatId,
+    });
+    //console.log(sendMessageResponse);
+    if (sendMessageResponse.success) {
+      const componentType = sendMessageResponse.data.returnType;
+      if (componentType === "productList") {
+        setMessages([
+          ...messages,
+          { message: message, messageType: "user" },
+          {
+            message: sendMessageResponse.data.searchProducts,
+            messageType: "productList",
+          },
+        ]);
       }
     } else {
-      console.log("There is an error in chat response");
+      console.log("There is an error in message response");
     }
 
     // Reset input value

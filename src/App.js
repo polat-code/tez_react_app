@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Main from "./components/Main/Main";
 
 function App() {
+  const [isCreatedNewChat, setIsCreatedNewChat] = useState(false);
+
   return (
     <div className="App">
-      <Sidebar />
-      <Main />
+      <Sidebar
+        isCreatedNewChat={isCreatedNewChat}
+        setIsCreatedNewChat={setIsCreatedNewChat}
+      />
+      <Main
+        isCreatedNewChat={isCreatedNewChat}
+        setIsCreatedNewChat={setIsCreatedNewChat}
+      />
     </div>
   );
 }

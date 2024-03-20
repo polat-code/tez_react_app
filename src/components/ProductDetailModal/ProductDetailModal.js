@@ -19,30 +19,35 @@ const ProductDetailModal = ({ selectedProduct, setSelectedProduct }) => {
               src={selectedProduct.url}
               alt={selectedProduct.title}
               style={{ width: "100px", height: "100px" }}
+              className="rounded"
             />
-            <h3>
-              <span className="red-color">Product Name: </span>{" "}
+            <h3 className="m-3 ms-4">
+              <span className="red-color">Product Name: </span> <br />
               {selectedProduct.title}
             </h3>
           </div>
         </div>
-        <div className="product-details text-size">
-          <h4>Product Details</h4>
+        <div className="product-details text-size ">
+          <h4 className="fw-bolder">Product Details</h4>
           <p>
-            Brand:
+            <span className="fw-bold red-color">Brand:</span>
             {selectedProduct.brand === null ? "Unknown" : selectedProduct.brand}
           </p>
           <p>
-            In Stock:{" "}
+            <span className="fw-bold red-color">In Stock: </span>
+
             {selectedProduct && selectedProduct.inStock ? "Yes" : "No"}
           </p>
           <p>
-            Category:{" "}
+            <span className="fw-bold red-color">Category: </span>
             {selectedProduct.category
               ? selectedProduct.category.categoryName
               : "Unknown"}
           </p>
-          <p>Price: ${selectedProduct.price}</p>
+          <p>
+            <span className="fw-bold red-color">Price:</span> $
+            {selectedProduct.price}
+          </p>
         </div>
         <div className="product-features">
           {/* ...diğer özellikler ve açıklamalar... */}
