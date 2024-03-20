@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Main.css";
 import sendBtn from "../../assets/send.svg";
 import Chat from "../Chat/Chat";
 import { createChat, sendMessage } from "../../api/api";
@@ -57,13 +58,22 @@ const Main = () => {
             placeholder="Message to Wise ..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            disabled={isLoading}
           />
           <button
             className="send"
             onClick={handleSendMessage}
             disabled={isLoading}
           >
-            <img src={sendBtn} alt="Send Button" />
+            {isLoading ? (
+              <span
+                className="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            ) : (
+              <img src={sendBtn} alt="Send Button" />
+            )}
           </button>
         </div>
       </div>

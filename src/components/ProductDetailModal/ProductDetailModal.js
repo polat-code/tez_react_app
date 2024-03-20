@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./ProductDetailModal.css";
 const ProductDetailModal = ({ selectedProduct, setSelectedProduct }) => {
   return (
     <div className="product-modal">
@@ -7,33 +7,44 @@ const ProductDetailModal = ({ selectedProduct, setSelectedProduct }) => {
         <span className="close" onClick={() => setSelectedProduct(null)}>
           &times;
         </span>
-        <div className="product-modal-header">
-          <img
-            src={selectedProduct.url}
-            alt={selectedProduct.title}
-            style={{ width: "100px", height: "100px" }}
-          />
-          <h3>Product Name:{selectedProduct.title}</h3>
-          <div className="product-rating">
+        <div className="product-modal-header d-flex flex-column align-items-end">
+          <div className="product-rating text-size pe-3">
             <span>Rating: </span>
             {/* Sembolik yıldızlar ve puan */}
             <span className="stars">★★★★★</span>
             <span>(5.0)</span>
           </div>
+          <div className="d-flex flex-row">
+            <img
+              src={selectedProduct.url}
+              alt={selectedProduct.title}
+              style={{ width: "100px", height: "100px" }}
+            />
+            <h3>
+              <span className="red-color">Product Name: </span>{" "}
+              {selectedProduct.title}
+            </h3>
+          </div>
         </div>
-        <div className="product-details">
+        <div className="product-details text-size">
           <h4>Product Details</h4>
-          <p>Brand: Example Brand</p>
-          <p>Cpu Model: Example CPU</p>
-          <p>RAM: 16-GB RAM</p>
-          <p>Memory: 512 GB SSD</p>
+          <p>
+            Brand:
+            {selectedProduct.brand === null ? "Unknown" : selectedProduct.brand}
+          </p>
+          <p>
+            In Stock:{" "}
+            {selectedProduct && selectedProduct.inStock ? "Yes" : "No"}
+          </p>
+          <p>
+            Category:{" "}
+            {selectedProduct.category
+              ? selectedProduct.category.categoryName
+              : "Unknown"}
+          </p>
           <p>Price: ${selectedProduct.price}</p>
         </div>
         <div className="product-features">
-          <h4>Features</h4>
-          <p>
-            {selectedProduct.description || "Lorem ipsum dolor sit amet..."}
-          </p>
           {/* ...diğer özellikler ve açıklamalar... */}
         </div>
         <button className="add-to-cart">Add to Cart</button>
