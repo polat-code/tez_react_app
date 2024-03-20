@@ -1,6 +1,8 @@
 import React from "react";
 import "./ProductDetailModal.css";
+import AttributeValue from "../AttributeValue/AttributeValue";
 const ProductDetailModal = ({ selectedProduct, setSelectedProduct }) => {
+  //console.log(selectedProduct);
   return (
     <div className="product-modal">
       <div className="product-modal-content">
@@ -27,12 +29,8 @@ const ProductDetailModal = ({ selectedProduct, setSelectedProduct }) => {
             </h3>
           </div>
         </div>
-        <div className="product-details text-size ">
+        <div className="product-details text-size">
           <h4 className="fw-bolder">Product Details</h4>
-          <p>
-            <span className="fw-bold red-color">Brand:</span>
-            {selectedProduct.brand === null ? "Unknown" : selectedProduct.brand}
-          </p>
           <p>
             <span className="fw-bold red-color">In Stock: </span>
 
@@ -46,11 +44,17 @@ const ProductDetailModal = ({ selectedProduct, setSelectedProduct }) => {
           </p>
           <p>
             <span className="fw-bold red-color">Price:</span> $
-            {selectedProduct.price}
+            {selectedProduct.price ? selectedProduct.price : " Unknown"}
           </p>
         </div>
         <div className="product-features">
           {/* ...diğer özellikler ve açıklamalar... */}
+          {selectedProduct.attributeValues &&
+            selectedProduct.attributeValues.map((attributeValues, index) => {
+              return (
+                <AttributeValue key={index} attributeValues={attributeValues} />
+              );
+            })}
         </div>
         <button className="add-to-cart">Add to Cart</button>
       </div>

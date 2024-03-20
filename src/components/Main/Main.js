@@ -38,7 +38,7 @@ const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
       message: message,
       chatId: chatId,
     });
-    //console.log(sendMessageResponse);
+    console.log(sendMessageResponse);
     if (sendMessageResponse.success) {
       const componentType = sendMessageResponse.data.returnType;
       if (componentType === "productList") {
