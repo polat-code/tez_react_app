@@ -1,10 +1,5 @@
 import React, { useState } from "react";
 import "./slider.css";
-import MacbookProImg from "../../assets/macbookpro1.jpg";
-import DiorParfumeImg from "../../assets/dior_parfume.jpg";
-import NikeRunningShoeImg from "../../assets/nikeayakkabirunning.jpg";
-import AirPodsProImg from "../../assets/airpodspro.jpg";
-import ps5Img from "../../assets/ps5.jpg";
 import ListProduct from "../ListProduct/ListProduct";
 import ProductDetailModal from "../ProductDetailModal/ProductDetailModal";
 
@@ -28,15 +23,44 @@ const ProductSlider = ({ products }) => {
         data-bs-ride="carousel"
       >
         <div className="carousel-inner">
-          {products.map((product) => {
-            return (
-              <ListProduct
-                product={product}
-                handleProductClick={handleProductClick}
-              />
-            );
-          })}
+          {groupedProducts.map((group, index) => (
+            <div className={`carousel-item ${index === 0 ? "active" : ""}`}>
+              <div className="d-flex flex-row justify-content-center">
+                {group.map((product) => (
+                  <ListProduct
+                    key={product.id}
+                    product={product}
+                    handleProductClick={handleProductClick}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
+        <button
+          className="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button
+          className="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="visually-hidden">Next</span>
+        </button>
       </div>
       {selectedProduct && (
         <ProductDetailModal

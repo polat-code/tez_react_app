@@ -16,7 +16,6 @@ const Chat = ({ messages }) => {
             return <UserRequest key={index} text={message.message} />;
           case "register":
             return <Register key={index} />;
-
           case "cart":
             return <ShoppingCart key={index} text={message.message} />;
           default:

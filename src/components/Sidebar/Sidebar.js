@@ -12,6 +12,7 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
   useEffect(() => {
     const getAllChatsResponse = async () => {
       var allChatsResponse = await getAllChats();
+
       setChats(allChatsResponse.data);
       if (allChatsResponse.success) {
       } else {

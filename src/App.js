@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Sidebar from "./components/Sidebar/Sidebar";
