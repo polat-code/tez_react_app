@@ -10,6 +10,7 @@ const Main = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSendMessage = async () => {
+    setIsLoading(true);
     // Get Response from Backend
     const createChatResponse = await createChat(message);
     //console.log(createChatResponse);
@@ -41,6 +42,7 @@ const Main = () => {
 
     // Reset input value
     setMessage("");
+    setIsLoading(false);
   };
 
   return (
@@ -56,7 +58,11 @@ const Main = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <button className="send" onClick={handleSendMessage}>
+          <button
+            className="send"
+            onClick={handleSendMessage}
+            disabled={isLoading}
+          >
             <img src={sendBtn} alt="Send Button" />
           </button>
         </div>
