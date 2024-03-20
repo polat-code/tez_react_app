@@ -41,3 +41,13 @@ export const sendMessage = async (dataWithchatIdAndMessage) => {
     return { success: false, message: err.message };
   }
 };
+
+export const getAllChats = async () => {
+  try {
+    const response = await api().get("/chats/all");
+    return { success: true, data: response.data };
+  } catch (err) {
+    console.log(err);
+    return { success: false, message: err.message };
+  }
+};

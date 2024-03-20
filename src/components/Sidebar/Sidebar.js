@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import "./Sidebar.css";
 import wiseLogo from "../../assets/logo_resized.jpg";
 import addBtn from "../../assets/add-30.png";
 import msgIcon from "../../assets/message.svg";
 import homeProfile from "../../assets/home.svg";
+import { getAllChats } from "../../api/api";
+import ChatButton from "../ChatButton/ChatButton";
 
 const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
+  const [chats, setChats] = useState();
+  useEffect(() => {
+    const getAllChatsResponse = async () => {
+      var allChatsResponse = await getAllChats();
+      setChats(allChatsResponse.data);
+      if (allChatsResponse.success) {
+      } else {
+        console.log("There is an error in allChatsRespınse!");
+      }
+    };
+    getAllChatsResponse();
+  }, []);
+
   return (
     <div className="sideBar">
       <div className="upperSide">
@@ -20,14 +36,20 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
           New Chat
         </button>
         <div className="upperSideBottom">
-          <button className="query">
-            <img src={msgIcon} alt="message" />
-            What is Programming ?
-          </button>
-          <button className="query">
-            <img src={msgIcon} alt="message" />
-            What is Programming ?
-          </button>
+          {chats &&
+            chats.map((chat, key) => {
+              return (
+                <ChatButton
+                  key={key}
+                  lastMessage={
+                    chat
+                      ? chat.chatRecord[chat.chatRecord.length - 1]
+                          .messageContent
+                      : "Unknown"
+                  }
+                />
+              );
+            })}
         </div>
       </div>
       <div className="lowerSide">
