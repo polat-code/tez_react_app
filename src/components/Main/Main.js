@@ -6,34 +6,42 @@ import { createChat, sendMessage } from "../../api/api";
 
 const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
   const [messages, setMessages] = useState([]);
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [chatId, setChatId] = useState(0);
+  const [chatId, setChatId] = useState(() => {
+    // İlk yüklemede localStorage'dan chatId'yi al
+    return localStorage.getItem("chatId") || "";
+  });
 
   useEffect(() => {
     const createAChat = async () => {
       if (!chatId) {
         var createChatResponse = await createChat(message);
+        console.log(createChatResponse);
         if (!createChatResponse.success) {
           console.log("there is an error in creating a chat");
         } else {
           console.log(createChatResponse.data.id);
           setChatId(createChatResponse.data.id);
+          localStorage.setItem("chatId", createChatResponse.data.id); // chatId'yi localStorage'a kaydet
         }
       }
     };
 
-    createAChat();
-    setMessages([]);
-    setMessage("");
-  }, [isCreatedNewChat]);
+    if (isCreatedNewChat) {
+      // Yeni bir sohbet başlatıldığında mevcut sohbeti sıfırla
+      setMessages([]);
+      setMessage("");
+      setChatId("");
+      localStorage.removeItem("chatId"); // localStorage'daki chatId'yi temizle
+      setIsCreatedNewChat(false); // isCreatedNewChat'i sıfırla
+    } else {
+      createAChat();
+    }
+  }, [isCreatedNewChat, chatId, message, setIsCreatedNewChat]);
 
   const handleSendMessage = async () => {
     setIsLoading(true);
-    // Get Response from Backend
-    //console.log(createChatResponse);
-
-    // Send a message to backend (Chatgpt)
     const sendMessageResponse = await sendMessage({
       message: message,
       chatId: chatId,
