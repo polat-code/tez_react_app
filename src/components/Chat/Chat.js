@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import UserRequest from "../UserRequest/UserRequest";
 import BotResponse from "../BotResponse/BotResponse";
 import Register from "../Register/Register";

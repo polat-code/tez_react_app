@@ -73,6 +73,10 @@ body{
   border-radius: 0.5rem;
 }
 
+.container {
+  display: flex;
+}
+
 .query{
   display: flex;
   background: transparent;

@@ -28,17 +28,10 @@ const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
       }
     };
 
-    if (isCreatedNewChat) {
-      // Yeni bir sohbet başlatıldığında mevcut sohbeti sıfırla
-      setMessages([]);
-      setMessage("");
-      setChatId("");
-      localStorage.removeItem("chatId"); // localStorage'daki chatId'yi temizle
-      setIsCreatedNewChat(false); // isCreatedNewChat'i sıfırla
-    } else {
-      createAChat();
-    }
-  }, [isCreatedNewChat, chatId, message, setIsCreatedNewChat]);
+    createAChat();
+    setMessages([]);
+    setMessage("");
+  }, [isCreatedNewChat]);
 
   const handleSendMessage = async () => {
     setIsLoading(true);
@@ -46,7 +39,7 @@ const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
       message: message,
       chatId: chatId,
     });
-    console.log(sendMessageResponse);
+  
     if (sendMessageResponse.success) {
       const componentType = sendMessageResponse.data.returnType;
       if (componentType === "productList") {
