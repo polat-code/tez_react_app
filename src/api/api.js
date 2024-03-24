@@ -8,17 +8,18 @@ export const api = () => {
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
-  
+  console.log(headers)
   const instance = axios.create({
     baseURL: baseAppUrl,
     headers,
   });
-
+  
   return instance;
 };
 
 export const createChat = async () => {
   try {
+    
     const response = await api().post("/chats");
     
     return { success: true, data: response.data };
@@ -33,7 +34,7 @@ export const createChat = async () => {
 export const sendMessage = async (dataWithchatIdAndMessage) => {
   try {
     //console.log(dataWithchatIdAndMessage);
-    const response = await api().post("/chats/send-message", {
+    const response = await api().post("/chats/chat", {
       chatId: dataWithchatIdAndMessage.chatId,
       message: dataWithchatIdAndMessage.message,
     });

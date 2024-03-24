@@ -9,21 +9,24 @@ const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [chatId, setChatId] = useState(() => {
-    // İlk yüklemede localStorage'dan chatId'yi al
+    // Get chatId from localStorage on initial load
     return localStorage.getItem("chatId") || "";
   });
 
   useEffect(() => {
     const createAChat = async () => {
       if (!chatId) {
-        var createChatResponse = await createChat(message);
-        console.log(createChatResponse);
-        if (!createChatResponse.success) {
-          console.log("there is an error in creating a chat");
-        } else {
-          console.log(createChatResponse.data.id);
-          setChatId(createChatResponse.data.id);
-          localStorage.setItem("chatId", createChatResponse.data.id); // chatId'yi localStorage'a kaydet
+        try {
+          const createChatResponse = await createChat(message);
+          console.log("Create Chat Response:", createChatResponse);
+          if (!createChatResponse.success) {
+            console.error("Error in creating a chat");
+          } else {
+            setChatId(createChatResponse.data.id);
+            localStorage.setItem("chatId", createChatResponse.data.id); // Save chatId to localStorage
+          }
+        } catch (error) {
+          console.error("Error in creating a chat:", error);
         }
       }
     };
@@ -35,28 +38,30 @@ const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
 
   const handleSendMessage = async () => {
     setIsLoading(true);
-    const sendMessageResponse = await sendMessage({
-      message: message,
-      chatId: chatId,
-    });
-  
-    if (sendMessageResponse.success) {
-      const componentType = sendMessageResponse.data.returnType;
-      if (componentType === "productList") {
-        setMessages([
-          ...messages,
-          { message: message, messageType: "user" },
-          {
-            message: sendMessageResponse.data.searchProducts,
-            messageType: "productList",
-          },
-        ]);
+    try {
+      const sendMessageResponse = await sendMessage({
+        message: message,
+        chatId: chatId,
+      });
+      console.log("Send Message Response:", sendMessageResponse);
+      if (sendMessageResponse.success) {
+        const componentType = sendMessageResponse.data.messageType;
+        if (componentType === "productList") {
+          setMessages([
+            ...messages,
+            { message: message, messageType: "user" },
+            {
+              message: sendMessageResponse.data.productList,
+              messageType: "productList",
+            },
+          ]);
+        }
+      } else {
+        console.error("Error in message response");
       }
-    } else {
-      console.log("There is an error in message response");
+    } catch (error) {
+      console.error("Error in sending message:", error);
     }
-
-    // Reset input value
     setMessage("");
     setIsLoading(false);
   };
@@ -68,8 +73,6 @@ const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
         <div className="inp">
           <input
             type="text"
-            name=""
-            id=""
             placeholder="Message to Wise ..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}

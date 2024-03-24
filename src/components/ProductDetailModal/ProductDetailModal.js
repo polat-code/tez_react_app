@@ -1,8 +1,8 @@
 import React from "react";
 import "./ProductDetailModal.css";
 import AttributeValue from "../AttributeValue/AttributeValue";
+
 const ProductDetailModal = ({ selectedProduct, setSelectedProduct }) => {
-  //console.log(selectedProduct);
   return (
     <div className="product-modal">
       <div className="product-modal-content">
@@ -12,7 +12,6 @@ const ProductDetailModal = ({ selectedProduct, setSelectedProduct }) => {
         <div className="product-modal-header d-flex flex-column align-items-end">
           <div className="product-rating text-size pe-3">
             <span>Rating: </span>
-            {/* Sembolik yıldızlar ve puan */}
             <span className="stars">★★★★★</span>
             <span>(5.0)</span>
           </div>
@@ -33,7 +32,6 @@ const ProductDetailModal = ({ selectedProduct, setSelectedProduct }) => {
           <h4 className="fw-bolder">Product Details</h4>
           <p>
             <span className="fw-bold red-color">In Stock: </span>
-
             {selectedProduct && selectedProduct.inStock ? "Yes" : "No"}
           </p>
           <p>
@@ -44,17 +42,14 @@ const ProductDetailModal = ({ selectedProduct, setSelectedProduct }) => {
           </p>
           <p>
             <span className="fw-bold red-color">Price:</span> $
-            {selectedProduct.price ? selectedProduct.price : " Unknown"}
+            {selectedProduct.price ? selectedProduct.price : "Unknown"}
           </p>
         </div>
         <div className="product-features">
-          {/* ...diğer özellikler ve açıklamalar... */}
           {selectedProduct.attributeValues &&
-            selectedProduct.attributeValues.map((attributeValues, index) => {
-              return (
-                <AttributeValue key={index} attributeValues={attributeValues} />
-              );
-            })}
+            selectedProduct.attributeValues.map((attributeValue, index) => (
+              <AttributeValue key={index} attributeValue={attributeValue} />
+            ))}
         </div>
         <button className="add-to-cart">Add to Cart</button>
       </div>

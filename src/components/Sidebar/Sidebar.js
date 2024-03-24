@@ -2,25 +2,33 @@ import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
 import wiseLogo from "../../assets/logo_resized.jpg";
 import addBtn from "../../assets/add-30.png";
-import msgIcon from "../../assets/message.svg";
 import homeProfile from "../../assets/home.svg";
-import { getAllChats } from "../../api/api";
+import { getAllChats, createChat } from "../../api/api"; // Import createChat here
 import ChatButton from "../ChatButton/ChatButton";
 
 const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
-  const [chats, setChats] = useState();
+  const [chats, setChats] = useState([]);
+
   useEffect(() => {
     const getAllChatsResponse = async () => {
       var allChatsResponse = await getAllChats();
-
-      setChats(allChatsResponse.data);
       if (allChatsResponse.success) {
+        setChats(allChatsResponse.data);
       } else {
-        console.log("There is an error in allChatsRespınse!");
+        console.log("There is an error in allChatsResponse!");
       }
     };
     getAllChatsResponse();
-  }, []);
+  }, [isCreatedNewChat]); // Add isCreatedNewChat as a dependency
+
+  const handleCreateNewChat = async () => {
+    const createChatResponse = await createChat();
+    if (createChatResponse.success) {
+      setIsCreatedNewChat(!isCreatedNewChat); // Update the state to trigger a re-fetch of chats
+    } else {
+      console.error("Error in creating a new chat");
+    }
+  };
 
   return (
     <div className="sideBar">
@@ -29,10 +37,7 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
           <img src={wiseLogo} className="logo" alt="wiseLogo" />
           <span className="brand">Wise</span>
         </div>
-        <button
-          className="midBtn"
-          onClick={() => setIsCreatedNewChat(!isCreatedNewChat)}
-        >
+        <button className="midBtn" onClick={handleCreateNewChat}>
           <img className="addBtn" alt="" src={addBtn} />
           New Chat
         </button>
@@ -43,10 +48,9 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
                 <ChatButton
                   key={key}
                   lastMessage={
-                    chat
-                      ? chat.chatRecord[chat.chatRecord.length - 1]
-                          .messageContent
-                      : "Unknown"
+                    chat.chatRecord && chat.chatRecord.length > 0
+                      ? chat.chatRecord[chat.chatRecord.length - 1].messageContent
+                      : "No messages"
                   }
                 />
               );
