@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
 import {login} from "../../api/api"
-import App from '../../App';
 
 
 const Login = ({onLoginSuccess}) => {
@@ -13,12 +12,15 @@ const Login = ({onLoginSuccess}) => {
     const navigate = useNavigate();
    
     const submitLoginForm = async () => {
+    
       if (email !== "" && password !== "") {
+          console.log(email);
           const response = await login(email, password);
           if (response.success) {
               console.log("Login successful");
               // If login is successful, you can store the token and navigate to another page
               localStorage.setItem('access_token', response.data.access_token);
+              localStorage.setItem('refreshToken', response.data.refresh_token);
               onLoginSuccess();
               navigate('/dashboard'); // Adjust the path as needed
             
