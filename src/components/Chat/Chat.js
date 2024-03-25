@@ -5,13 +5,20 @@ import Register from "../Register/Register";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import ProductSlider from "../ProductSlider/ProductSlider";
 
+
 const Chat = ({ messages }) => {
   return (
     <div className="chats">
       {messages.map((message, index) => {
         switch (message.messageType) {
           case "productList":
-            return <ProductSlider key={index} products={message.message} />;
+            return (
+              <ProductSlider
+                key={index}
+                id={`productSlider-${index}`} // Unique ID for each slider
+                products={message.message}
+              />
+            );
           case "user":
             return <UserRequest key={index} text={message.message} />;
           case "register":

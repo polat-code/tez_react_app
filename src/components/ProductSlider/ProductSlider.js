@@ -3,7 +3,8 @@ import "./slider.css";
 import ListProduct from "../ListProduct/ListProduct";
 import ProductDetailModal from "../ProductDetailModal/ProductDetailModal";
 
-const ProductSlider = ({ products }) => {
+
+const ProductSlider = ({ id, products }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleProductClick = (product) => {
@@ -12,7 +13,7 @@ const ProductSlider = ({ products }) => {
 
   return (
     <div>
-      <div id="carouselExampleControls" className="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div id={id} className="carousel carousel-dark slide" data-bs-ride="carousel">
         <div className="carousel-inner">
           {products.map((product, index) => (
             <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`}>
@@ -29,7 +30,7 @@ const ProductSlider = ({ products }) => {
         <button
           className="carousel-control-prev"
           type="button"
-          data-bs-target="#carouselExampleControls"
+          data-bs-target={`#${id}`}
           data-bs-slide="prev"
         >
           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -38,7 +39,7 @@ const ProductSlider = ({ products }) => {
         <button
           className="carousel-control-next"
           type="button"
-          data-bs-target="#carouselExampleControls"
+          data-bs-target={`#${id}`}
           data-bs-slide="next"
         >
           <span className="carousel-control-next-icon" aria-hidden="true"></span>
