@@ -110,6 +110,18 @@ export const sendMessage = async (dataWithchatIdAndMessage) => {
   }
 };
 
+export const fetchChatRecords = async (chatId) => {
+  try {
+    
+    const response = await api.get(`/chats/chat/${chatId}`);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching chat records:", error);
+    throw error;
+  }
+};
+
 export const getAllChats = async () => {
   try {
     const response = await api.get("/chats/all", { 

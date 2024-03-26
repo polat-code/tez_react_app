@@ -41,7 +41,7 @@ const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
     try {
       const sendMessageResponse = await sendMessage({
         message: message,
-        chatId: chatId,
+        chatId: localStorage.getItem('chatId'),
       });
       console.log("Send Message Response:", sendMessageResponse);
       if (sendMessageResponse.success) {

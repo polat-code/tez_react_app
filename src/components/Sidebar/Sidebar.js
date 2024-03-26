@@ -24,6 +24,8 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
   const handleCreateNewChat = async () => {
     const createChatResponse = await createChat();
     if (createChatResponse.success) {
+      const newChatId = createChatResponse.data.id;
+      localStorage.setItem('chatId', newChatId);
       setIsCreatedNewChat(!isCreatedNewChat); // Update the state to trigger a re-fetch of chats
     } else {
       console.error("Error in creating a new chat");
@@ -47,6 +49,7 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
               return (
                 <ChatButton
                   key={key}
+                  chatId={chat.id} // Pass the chatId as a prop
                   lastMessage={
                     chat.chatRecord && chat.chatRecord.length > 0
                       ? chat.chatRecord[chat.chatRecord.length - 1].messageContent
