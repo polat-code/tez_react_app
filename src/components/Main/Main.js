@@ -66,6 +66,12 @@ const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
     setIsLoading(false);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter' && message.trim()) {
+      handleSendMessage();
+    }
+  };
+
   return (
     <div className="main">
       <Chat messages={messages} />
@@ -76,6 +82,7 @@ const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
             placeholder="Message to Wise ..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyPress}
             disabled={isLoading}
           />
           <button

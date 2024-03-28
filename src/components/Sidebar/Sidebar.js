@@ -41,7 +41,7 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
         </div>
         <button className="midBtn" onClick={handleCreateNewChat}>
           <img className="addBtn" alt="" src={addBtn} />
-          New Chat
+          Smart Shop Secret
         </button>
         <div className="upperSideBottom">
           {chats &&
