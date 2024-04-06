@@ -19,16 +19,9 @@ const ChatButton = ({ chatId }) => {
   return (
     <div>
       <button className="query" onClick={handleButtonClick}>
-        <img src={msgIcon} alt="message" />
+        <img src={msgIcon} alt="message" className="chat-button-icon" />
         View Chat Records
       </button>
-      {showRecords && (
-        <div className="chat-records">
-          {chatRecords.map((record, index) => (
-            <div key={index}>{record.message}</div>
-          ))}
-        </div>
-      )}
     </div>
   );
 };

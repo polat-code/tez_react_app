@@ -3,22 +3,25 @@
     padding: 1rem;
     border-radius: 8px;
     border-bottom: 4px solid #292f3f;
-    width: 205px;
-    height: 230px; /* Yüksekliği buton boyutuna göre ayarladım */
+    width: 100vw;
+    height: 100vh; /* Yüksekliği buton boyutuna göre ayarladım */
     box-shadow: 0 1px 0px 0 black;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    margin-top: 4rem;
   }
   
   .input-group {
     position: relative;
     margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
   
   .input-field {
     display: block;
-    width: 100%;
+    width: 40%;
     padding: 0.5rem 0;
     border: none;
     border-bottom: 1px solid #ddd;
@@ -52,3 +55,12 @@
     background-color: #2a78c7;
   }
   
+
+.login-header-text-size {
+  font-size: 4rem !important;
+}
+
+.login-logo-size {
+  width: 150px;
+  height: 150px;
+}

@@ -13,6 +13,7 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
     const getAllChatsResponse = async () => {
       var allChatsResponse = await getAllChats();
       if (allChatsResponse.success) {
+        console.log(allChatsResponse.data);
         setChats(allChatsResponse.data);
       } else {
         console.log("There is an error in allChatsResponse!");
@@ -25,7 +26,7 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
     const createChatResponse = await createChat();
     if (createChatResponse.success) {
       const newChatId = createChatResponse.data.id;
-      localStorage.setItem('chatId', newChatId);
+      localStorage.setItem("chatId", newChatId);
       setIsCreatedNewChat(!isCreatedNewChat); // Update the state to trigger a re-fetch of chats
     } else {
       console.error("Error in creating a new chat");
@@ -52,7 +53,8 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
                   chatId={chat.id} // Pass the chatId as a prop
                   lastMessage={
                     chat.chatRecord && chat.chatRecord.length > 0
-                      ? chat.chatRecord[chat.chatRecord.length - 1].messageContent
+                      ? chat.chatRecord[chat.chatRecord.length - 1]
+                          .messageContent
                       : "No messages"
                   }
                 />
