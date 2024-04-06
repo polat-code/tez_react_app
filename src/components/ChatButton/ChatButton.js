@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import msgIcon from "../../assets/message.svg";
 import { fetchChatRecords } from "../../api/api";
 
-const ChatButton = ({ chatId }) => {
+const ChatButton = ({ chatId, lastMessage }) => {
   const [chatRecords, setChatRecords] = useState([]);
   const [showRecords, setShowRecords] = useState(false);
 
@@ -18,10 +18,12 @@ const ChatButton = ({ chatId }) => {
 
   return (
     <div>
-      <button className="query" onClick={handleButtonClick}>
-        <img src={msgIcon} alt="message" className="chat-button-icon" />
-        View Chat Records
-      </button>
+      {lastMessage && (
+        <button className="query" onClick={handleButtonClick}>
+          <img src={msgIcon} alt="message" className="chat-button-icon" />
+          {lastMessage}
+        </button>
+      )}
     </div>
   );
 };

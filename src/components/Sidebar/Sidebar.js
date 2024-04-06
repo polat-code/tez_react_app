@@ -52,10 +52,11 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
                   key={key}
                   chatId={chat.id} // Pass the chatId as a prop
                   lastMessage={
-                    chat.chatRecord && chat.chatRecord.length > 0
-                      ? chat.chatRecord[chat.chatRecord.length - 1]
-                          .messageContent
-                      : "No messages"
+                    chat.chatRecord &&
+                    chat.chatRecord.length > 0 &&
+                    chat.chatRecord[chat.chatRecord.length - 1].message
+                      ? chat.chatRecord[chat.chatRecord.length - 1].message
+                      : ""
                   }
                 />
               );
