@@ -3,7 +3,7 @@ import "./Sidebar.css";
 import wiseLogo from "../../assets/logo_resized.jpg";
 import addBtn from "../../assets/add-30.png";
 import homeProfile from "../../assets/home.svg";
-import { getAllChats, createChat } from "../../api/api"; // Import createChat here
+import { getAllChats, createChat, fetchChatRecords } from "../../api/api"; // Import createChat here
 import ChatButton from "../ChatButton/ChatButton";
 
 const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat, setMessages }) => {
@@ -23,13 +23,17 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat, setMessages }) => {
   }, [isCreatedNewChat]); // Add isCreatedNewChat as a dependency
 
   const handleCreateNewChat = async () => {
-    const createChatResponse = await createChat();
-    if (createChatResponse.success) {
-      const newChatId = createChatResponse.data.id;
-      localStorage.setItem("chatId", newChatId);
-      setIsCreatedNewChat(!isCreatedNewChat); // Update the state to trigger a re-fetch of chats
-    } else {
-      console.error("Error in creating a new chat");
+    const chatRecord = await fetchChatRecords(localStorage.getItem("chatId"));
+    console.log(chatRecord);
+    if (chatRecord.chatResponses.length > 1) {
+      const createChatResponse = await createChat();
+      if (createChatResponse.success) {
+        const newChatId = createChatResponse.data.id;
+        localStorage.setItem("chatId", newChatId);
+        setIsCreatedNewChat(!isCreatedNewChat); // Update the state to trigger a re-fetch of chats
+      } else {
+        console.error("Error in creating a new chat");
+      }
     }
   };
 
