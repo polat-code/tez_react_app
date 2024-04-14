@@ -5,7 +5,6 @@ import Register from "../Register/Register";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import ProductSlider from "../ProductSlider/ProductSlider";
 
-
 const Chat = ({ messages }) => {
   return (
     <div className="chats">

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import msgIcon from "../../assets/message.svg";
 import { fetchChatRecords } from "../../api/api";
 
-const ChatButton = ({ chatId, lastMessage }) => {
+const ChatButton = ({ chatId, lastMessage, setMessages }) => {
   const [chatRecords, setChatRecords] = useState([]);
   const [showRecords, setShowRecords] = useState(false);
 
   const handleButtonClick = async () => {
     try {
       const records = await fetchChatRecords(chatId);
-      setChatRecords(records);
+      setChatRecords(records.chatResponses);
       setShowRecords(true);
     } catch (error) {
       console.error("Error handling button click:", error);

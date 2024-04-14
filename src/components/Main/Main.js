@@ -4,8 +4,12 @@ import sendBtn from "../../assets/send.svg";
 import Chat from "../Chat/Chat";
 import { createChat, sendMessage } from "../../api/api";
 
-const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
-  const [messages, setMessages] = useState([]);
+const Main = ({
+  isCreatedNewChat,
+  setIsCreatedNewChat,
+  messages,
+  setMessages,
+}) => {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [chatId, setChatId] = useState(() => {
@@ -41,7 +45,7 @@ const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
     try {
       const sendMessageResponse = await sendMessage({
         message: message,
-        chatId: localStorage.getItem('chatId'),
+        chatId: localStorage.getItem("chatId"),
       });
       console.log("Send Message Response:", sendMessageResponse);
       if (sendMessageResponse.success) {
@@ -67,14 +71,14 @@ const Main = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter' && message.trim()) {
+    if (event.key === "Enter" && message.trim()) {
       handleSendMessage();
     }
   };
 
   return (
     <div className="main">
-      <Chat messages={messages} />
+      <Chat messages={messages} setMessages={setMessages} />
       <div className="chatFooter">
         <div className="inp">
           <input

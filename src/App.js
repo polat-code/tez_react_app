@@ -10,6 +10,7 @@ import Login from "./components/Login/Login";
 function App() {
   const [isCreatedNewChat, setIsCreatedNewChat] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [messages, setMessages] = useState([]);
 
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
@@ -22,10 +23,13 @@ function App() {
           <Sidebar
             isCreatedNewChat={isCreatedNewChat}
             setIsCreatedNewChat={setIsCreatedNewChat}
+            setMessages={setMessages}
           />
           <Main
             isCreatedNewChat={isCreatedNewChat}
             setIsCreatedNewChat={setIsCreatedNewChat}
+            messages={messages}
+            setMessages={setMessages}
           />
         </div>
       ) : (

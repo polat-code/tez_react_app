@@ -6,7 +6,7 @@ import homeProfile from "../../assets/home.svg";
 import { getAllChats, createChat } from "../../api/api"; // Import createChat here
 import ChatButton from "../ChatButton/ChatButton";
 
-const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
+const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat, setMessages }) => {
   const [chats, setChats] = useState([]);
 
   useEffect(() => {
@@ -58,6 +58,7 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat }) => {
                       ? chat.chatRecord[chat.chatRecord.length - 1].message
                       : ""
                   }
+                  setMessages={setMessages}
                 />
               );
             })}
