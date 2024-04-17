@@ -125,6 +125,7 @@ body{
   width: 100%;
   max-width: 70rem;
   height: auto;
+  max-height:600px
 }
 
 

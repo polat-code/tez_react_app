@@ -7,8 +7,7 @@ const ChatButton = ({ chatId, lastMessage, setMessages }) => {
     try {
       const records = await fetchChatRecords(chatId);
       const chatRecords = records.chatResponses;
-      console.log(chatRecords);
-
+      localStorage.setItem("chatId", chatId);
       // İlk önce messages array'ini boşalt
       setMessages([]);
 
