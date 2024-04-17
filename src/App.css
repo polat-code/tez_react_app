@@ -45,7 +45,7 @@ body{
 .chat{
   margin:1rem;
   padding:2rem 3rem;
-  font-size:1.2rem;
+  font-size:0.8rem;
   display:flex;
   align-items: flex-start;
   text-align: justify;
@@ -112,12 +112,11 @@ body{
   padding-right:1rem;
 }
 .main{
-  min-height: calc(100vh - 14rem);
   display: flex;
   align-items: center;
   flex-direction: column;
   margin:1.2rem 1rem;
-  margin-bottom:35px;
+  margin-bottom:25px;
 }
 .chats{
   overflow: hidden;
@@ -125,7 +124,7 @@ body{
   scroll-behavior: smooth;
   width: 100%;
   max-width: 70rem;
-  height: calc(100vh - 17rem);
+  height: auto;
 }
 
 

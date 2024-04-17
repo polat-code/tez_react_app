@@ -11,24 +11,24 @@ const ProductDetailModal = ({ selectedProduct, setSelectedProduct }) => {
         </span>
         <div className="product-modal-header d-flex flex-column align-items-end">
           <div className="product-rating text-size pe-3">
-            <span>Rating: </span>
+            <span className="fs-5">Rating: </span>
             <span className="stars">★★★★★</span>
-            <span>(5.0)</span>
+            <span className="fs-5">(5.0)</span>
           </div>
           <div className="d-flex flex-row">
             <img
               src={selectedProduct.url}
               alt={selectedProduct.title}
-              style={{ width: "100px", height: "100px" }}
+              style={{ width: "150px", height: "150px" }}
               className="rounded"
             />
-            <h3 className="m-3 ms-4">
+            <h3 className="m-3 ms-4 fs-5">
               <span className="red-color">Product Name: </span> <br />
               {selectedProduct.title}
             </h3>
           </div>
         </div>
-        <div className="product-details text-size">
+        <div className="product-details fs-5">
           <h4 className="fw-bolder">Product Details</h4>
           <p>
             <span className="fw-bold red-color">In Stock: </span>
