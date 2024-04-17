@@ -6,14 +6,19 @@ import homeProfile from "../../assets/home.svg";
 import { getAllChats, createChat, fetchChatRecords } from "../../api/api"; // Import createChat here
 import ChatButton from "../ChatButton/ChatButton";
 
-const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat, setMessages }) => {
+const Sidebar = ({
+  isCreatedNewChat,
+  setIsCreatedNewChat,
+  setMessages,
+  messages,
+}) => {
   const [chats, setChats] = useState([]);
 
   useEffect(() => {
     const getAllChatsResponse = async () => {
       var allChatsResponse = await getAllChats();
       if (allChatsResponse.success) {
-        console.log(allChatsResponse.data);
+        //console.log(allChatsResponse.data);
         setChats(allChatsResponse.data);
       } else {
         console.log("There is an error in allChatsResponse!");
@@ -63,6 +68,7 @@ const Sidebar = ({ isCreatedNewChat, setIsCreatedNewChat, setMessages }) => {
                       : ""
                   }
                   setMessages={setMessages}
+                  messages={messages}
                 />
               );
             })}

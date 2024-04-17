@@ -24,6 +24,7 @@ function App() {
             isCreatedNewChat={isCreatedNewChat}
             setIsCreatedNewChat={setIsCreatedNewChat}
             setMessages={setMessages}
+            messages={messages}
           />
           <Main
             isCreatedNewChat={isCreatedNewChat}
