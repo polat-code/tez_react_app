@@ -3,9 +3,13 @@ import "./slider.css";
 import ListProduct from "../ListProduct/ListProduct";
 import ProductDetailModal from "../ProductDetailModal/ProductDetailModal";
 
-
-const ProductSlider = ({ id, products }) => {
+const ProductSlider = ({ products }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const groupedProducts = [];
+  for (let i = 0; i < products.length; i += 2) {
+    groupedProducts.push(products.slice(i, i + 2));
+  }
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
@@ -13,36 +17,48 @@ const ProductSlider = ({ id, products }) => {
 
   return (
     <div>
-      <div id={id} className="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div
+        id="carouselExampleControls"
+        className="carousel carousel-dark slide"
+        data-bs-ride="carousel"
+      >
         <div className="carousel-inner">
-          {products.map((product, index) => (
-            <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`}>
+          {groupedProducts.map((group, index) => (
+            <div className={`carousel-item ${index === 0 ? "active" : ""}`}>
               <div className="d-flex flex-row justify-content-center">
-                <ListProduct
-                  key={product.id}
-                  product={product}
-                  handleProductClick={handleProductClick}
-                />
+                {group.map((product) => (
+                  <ListProduct
+                    key={product.id}
+                    product={product}
+                    handleProductClick={handleProductClick}
+                  />
+                ))}
               </div>
             </div>
           ))}
         </div>
         <button
-          className="carousel-control-prev"
+          className="carousel-control-prev prev-button"
           type="button"
-          data-bs-target={`#${id}`}
+          data-bs-target="#carouselExampleControls"
           data-bs-slide="prev"
         >
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
           <span className="visually-hidden">Previous</span>
         </button>
         <button
           className="carousel-control-next"
           type="button"
-          data-bs-target={`#${id}`}
+          data-bs-target="#carouselExampleControls"
           data-bs-slide="next"
         >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
           <span className="visually-hidden">Next</span>
         </button>
       </div>

@@ -63,6 +63,9 @@
   .product-rating .stars {
     color: #ffd700;
   }
-  
+
+  .prev-button {
+    width: 80px;
+  }
 
   
