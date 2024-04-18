@@ -6,8 +6,77 @@ import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import ProductSlider from "../ProductSlider/ProductSlider";
 
 const Chat = ({ messages }) => {
+  const mainCategories = [
+    "Beauty & Personal Care",
+    "Health & Household",
+    "Clothing, Shoes & Jewelry",
+    "Sports & Outdoors",
+    "Video Games",
+    "Office Products",
+    "Electronics",
+    "Industrial & Scientific",
+    "Home & Kitchen",
+    "Pet Supplies",
+    "Safety & Security",
+    "Automotive",
+    "Jewelry & Accessories",
+    "Grocery & Gourmet Food",
+    "Tools & Home Improvement",
+    "Small Appliance Parts & Accessories",
+    "Grills & Outdoor Cooking",
+    "Patio, Lawn & Garden",
+    "Baby Products",
+    "Appliances",
+  ];
   return (
     <div className="chats">
+      <nav class="nav ">
+        {mainCategories.map((category, index) => {
+          return (
+            <div>
+              <a
+                class="nav-link text-light dropdown-toggle"
+                aria-current="page"
+                href="#"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {category}
+              </a>
+              <ul
+                class="dropdown-menu dropdown-hover"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Separated link
+                  </a>
+                </li>
+              </ul>
+            </div>
+          );
+        })}
+      </nav>
+
       {messages.map((message, index) => {
         switch (message.messageType) {
           case "productList":
