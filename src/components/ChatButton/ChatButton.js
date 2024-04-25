@@ -27,10 +27,21 @@ const ChatButton = ({ chatId, lastMessage, setMessages }) => {
         } else if (
           chatRecords[i].messageType === "chatMessage" &&
           chatRecords[i].message !== null
-        ) {
+        ) 
+        {
           newMessages.push({
             message: chatRecords[i].message,
             messageType: "user",
+          });
+        }
+        else if (
+          chatRecords[i].messageType === "botMessage" &&
+          chatRecords[i].message !== null
+        ) 
+        {
+          newMessages.push({
+            message: chatRecords[i].message,
+            messageType: "botMessage",
           });
         }
       }

@@ -60,7 +60,21 @@ const Main = ({
             },
           ]);
         }
-      } else {
+
+        else if (componentType === "botMessage") {
+          setMessages([
+            ...messages,
+            { message: message, messageType: "user" },
+            {
+              message: sendMessageResponse.data.message,
+              messageType: "botMessage",
+            },
+          ]);
+
+        }
+      }
+      
+      else {
         console.error("Error in message response");
       }
     } catch (error) {
