@@ -25,7 +25,7 @@ const ChatButton = ({ chatId, lastMessage, setMessages }) => {
             messageType: "productList",
           });
         } else if (
-          chatRecords[i].messageType === "chatMessage" &&
+          chatRecords[i].messageType === "user" &&
           chatRecords[i].message !== null
         ) 
         {

@@ -72,6 +72,32 @@ const Main = ({
           ]);
 
         }
+
+        else if (componentType === "cart") {
+          setMessages([
+            ...messages,
+            { message: message, messageType: "user" },
+            {
+              message: sendMessageResponse.data.message,
+              messageType: "cart",
+            },
+          ]);
+
+          
+        }
+        else if (componentType === "cart") {
+          setMessages([
+            ...messages,
+            { message: message, messageType: "user" },
+            {
+              message: sendMessageResponse.data.message,
+              messageType: "cart",
+            },
+          ]);
+
+        }
+
+
       }
       
       else {

@@ -1,6 +1,8 @@
 import React from "react";
 import "./CartProduct.css";
-const CartProduct = ({ item }) => {
+import { FaMinusSquare, FaPlusSquare, FaTrash } from 'react-icons/fa';
+
+const CartProduct = ({ item, updateQuantity, removeItem, index }) => {
   return (
     <div
       key={item.id}

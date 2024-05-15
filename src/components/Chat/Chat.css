@@ -1,0 +1,24 @@
+.chats {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .chat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 15px;
+  }
+  
+
+  .chat-interaction {
+    margin-top: auto; /* Pushes chat to the bottom */
+    background: #f0f0f0; /* Light background for chat interactions */
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
