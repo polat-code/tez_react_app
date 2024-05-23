@@ -4,9 +4,10 @@ import "./UserRequest.css";
 
 const UserRequest = ({ text }) => {
   return (
-    <div className="chat">
-      <img className="chatImg" src={userIcon} alt="userphoto" />
-      <p className="txt">{text}</p>
+    <div className="message userMessage">
+    
+      <img className="userChatImg" src={userIcon} alt="userphoto" />
+      <p className="userTxt">{text}</p>
     </div>
   );
 };

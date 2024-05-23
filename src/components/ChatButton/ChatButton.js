@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import msgIcon from "../../assets/message.svg";
 import { fetchChatRecords } from "../../api/api";
 
-const ChatButton = ({ chatId, lastMessage, setMessages }) => {
+const ChatButton = ({
+  chatId,
+  lastMessage,
+  setMessages,
+  selectedChatId,
+  setSelectedChatId,
+}) => {
   const handleButtonClick = async () => {
     try {
       const records = await fetchChatRecords(chatId);
       const chatRecords = records.chatResponses;
       localStorage.setItem("chatId", chatId);
-      // İlk önce messages array'ini boşalt
       setMessages([]);
-
-      // Yeni mesajları toplamak için geçici bir array kullan
       const newMessages = [];
 
       for (let i = 0; i < chatRecords.length; i++) {
@@ -19,7 +22,6 @@ const ChatButton = ({ chatId, lastMessage, setMessages }) => {
           chatRecords[i].messageType === "productList" &&
           chatRecords[i].productList.length > 1
         ) {
-          // TODO: message.productList < 0 için bir satır yazmayı unutmayın
           newMessages.push({
             message: chatRecords[i].productList,
             messageType: "productList",
@@ -27,18 +29,15 @@ const ChatButton = ({ chatId, lastMessage, setMessages }) => {
         } else if (
           chatRecords[i].messageType === "user" &&
           chatRecords[i].message !== null
-        ) 
-        {
+        ) {
           newMessages.push({
             message: chatRecords[i].message,
             messageType: "user",
           });
-        }
-        else if (
+        } else if (
           chatRecords[i].messageType === "botMessage" &&
           chatRecords[i].message !== null
-        ) 
-        {
+        ) {
           newMessages.push({
             message: chatRecords[i].message,
             messageType: "botMessage",
@@ -46,8 +45,8 @@ const ChatButton = ({ chatId, lastMessage, setMessages }) => {
         }
       }
 
-      // Toplanan yeni mesajları setMessages ile ekleyin
       setMessages(newMessages);
+      setSelectedChatId(chatId); // Set the selected chat ID
     } catch (error) {
       console.error("Error handling button click:", error);
     }
@@ -56,7 +55,10 @@ const ChatButton = ({ chatId, lastMessage, setMessages }) => {
   return (
     <div>
       {lastMessage && (
-        <button className="query" onClick={handleButtonClick}>
+        <button
+          className={`query ${selectedChatId === chatId ? "selected" : ""}`}
+          onClick={handleButtonClick}
+        >
           <img src={msgIcon} alt="message" className="chat-button-icon" />
           {lastMessage.length < 35
             ? lastMessage

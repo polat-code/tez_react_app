@@ -1,0 +1,28 @@
+/* BotResponse.css */
+.message.botMessage {
+    margin: 1rem;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: flex-start;
+    text-align: justify;
+    background-color: rgba(28, 30, 58, 1); /* Dark blue background */
+
+    border-radius: 20px; /* Rounded corners, adjust as needed for more or less roundness */
+}
+
+
+
+
+.botChatImg {
+    object-fit: cover;
+    width: 3.5rem;
+    margin-right: 2rem; /* Space between the image and the text */
+    border-radius: 0.5rem;
+}
+
+.botTxt {
+    line-height: 2.5rem;
+    color: white;
+    flex: 1; /* Allows the text to expand filling the available space */
+}

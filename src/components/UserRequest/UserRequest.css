@@ -1,21 +1,28 @@
-.chat{
-    margin:1rem;
-    padding:2rem 3rem;
-    font-size:1.2rem;
-    display:flex;
+/* UserRequest.css */
+.message.userMessage {
+    margin: 1rem;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    display: flex;
     align-items: flex-start;
     text-align: justify;
-
+    background-color: rgba(28, 30, 58, 1); /* Dark blue background */
+    justify-content: flex-end; /* Aligns children to the right */
+    border-radius: 20px; /* Rounded corners, adjust as needed for more or less roundness */
 }
 
-.chatImg{
+.userChatImg {
     object-fit: cover;
-    width:3.5rem;
-    margin-right:2rem;
+    width: 3.5rem;
     border-radius: 0.5rem;
+    order: 2; /* Image appears first when seen from the left */
 }
 
-.txt{
+.userTxt {
     line-height: 2.5rem;
-    color:white;
-  }
+    color: white;
+    flex: 1; /* Allows the text to expand and fill available space */
+    order: 1; /* Ensures text is placed after the image in flow */
+    text-align: right; /* Aligns text to the right within its container */
+    margin-right: 1.5rem; /* Additional space between text and image */
+}

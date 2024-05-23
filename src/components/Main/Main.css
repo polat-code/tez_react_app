@@ -1,3 +1,59 @@
-.spinner-border {
-    color: #fff; /* Beyaz renk */
-  }
+/* Main container styles, leveraging flexbox for proper alignment and spacing */
+.main {
+  flex: 9;
+  display: flex;
+  flex-direction: column;
+  margin: 1.2rem 1rem;
+  margin-bottom: 25px;
+}
+
+/* Ensuring the chat has reasonable padding and is clearly legible */
+.chat {
+  margin: 1rem;
+  padding: 2rem 3rem;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: flex-start;
+  text-align: justify;
+  background-color: #292f3f; /* Integrating with global background color */
+}
+
+/* Specific styles for the chat footer */
+.chatFooter {
+  margin-top: auto;
+  padding: 0.5rem 0; /* Added padding for consistent spacing */
+  display: flex;
+  width: 100%; /* Ensures footer takes up full width of its container */
+  align-items: center; /* Centers items vertically within the footer */
+  justify-content: center; /* Centers items horizontally */
+  background: #292f3f; /* Maintains consistency with the body background */
+}
+
+/* Styles for the input area within the chat footer */
+.chatFooter .inp {
+  padding: 0.5rem;
+  background: transparent;
+  border-bottom: 1px solid #0398fc; /* Highlight with app theme color */
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  width: 80%; /* Controls width of input area */
+}
+
+/* Styling the input field to fit within the .inp container */
+.chatFooter .inp input {
+  width: calc(100% - 3rem); /* Full width minus the width of the send button */
+  outline: none;
+  padding: 1.25rem;
+  color: white; /* Ensures text is visible against darker backgrounds */
+  background: transparent;
+  border: none; /* Removes default styling */
+}
+
+/* Send button adjustments to fit aesthetically within the footer */
+.chatFooter .inp .send {
+  background: transparent;
+  border: none;
+  cursor: pointer; /* Ensures it appears clickable */
+}

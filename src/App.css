@@ -49,7 +49,6 @@ body{
   display:flex;
   align-items: flex-start;
   text-align: justify;
-
 }
 
 .addBtn{
@@ -125,7 +124,7 @@ body{
   width: 100%;
   max-width: 70rem;
   height: auto;
-  max-height:600px
+  max-height:650px
 }
 
 
@@ -137,13 +136,15 @@ body{
   float: left;
 }
 
-.chatFooter{
-  margin-top:auto;
-  display:flex;
-  width:100%;
+.chatFooter {
+  margin-top: auto; /* Pushes it to the bottom of the flex container */
+  display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
-  justify-items: center; 
+  justify-content: center; /* Changed from 'justify-items' which is not a valid flexbox property */
+  background: #292f3f; /* Optional: matches the app background */
+  padding: 1rem 0; /* Gives some padding around the content */
 }
 .inp{
   padding:0.5rem;
