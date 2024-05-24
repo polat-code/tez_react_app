@@ -59,9 +59,7 @@ const Main = ({
               messageType: "productList",
             },
           ]);
-        }
-
-        else if (componentType === "botMessage") {
+        } else if (componentType === "botMessage") {
           setMessages([
             ...messages,
             { message: message, messageType: "user" },
@@ -70,10 +68,7 @@ const Main = ({
               messageType: "botMessage",
             },
           ]);
-
-        }
-
-        else if (componentType === "cart") {
+        } else if (componentType === "cart") {
           setMessages([
             ...messages,
             { message: message, messageType: "user" },
@@ -82,10 +77,7 @@ const Main = ({
               messageType: "cart",
             },
           ]);
-
-          
-        }
-        else if (componentType === "cart") {
+        } else if (componentType === "cart") {
           setMessages([
             ...messages,
             { message: message, messageType: "user" },
@@ -94,13 +86,8 @@ const Main = ({
               messageType: "cart",
             },
           ]);
-
         }
-
-
-      }
-      
-      else {
+      } else {
         console.error("Error in message response");
       }
     } catch (error) {
@@ -136,7 +123,7 @@ const Main = ({
           >
             {isLoading ? (
               <span
-                className="spinner-border spinner-border-sm"
+                className="spinner-border spinner-border-sm color-white"
                 role="status"
                 aria-hidden="true"
               ></span>
